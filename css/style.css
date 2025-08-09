@@ -1,6 +1,6 @@
 :root {
-    --color-primario: #ff6f61;
-    --color-secundario: #ffd166;
+    --color-primario: #1a43fa;
+    --color-secundario: #b4b4b4;
     --color-fondo: #fffaf0;
     --color-texto: #333;
 }
@@ -67,6 +67,7 @@ nav a:hover {
 /* Historias */
 .story {
     max-width: 800px;
+    text-align: center;
     margin: 2rem auto;
     background: white;
     padding: 1.5rem;
