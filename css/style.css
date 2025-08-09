@@ -32,7 +32,7 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #333;
+    color: var(--color-texto);
     margin: 0 15px;
     font-weight: bold;
     transition: color 0.3s;
@@ -52,9 +52,12 @@ nav a:hover {
 
 .gallery img {
     width: 100%;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.2s;
+    object-fit: cover; /* evita deformaciones */
+    background-color: #eee; /* color de fondo mientras carga */
 }
 
 .gallery img:hover {
@@ -85,4 +88,129 @@ footer {
     font-size: 0.9rem;
     color: #555;
     margin-top: 2rem;
+}
+/* Media Queries */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.4rem;
+        padding: 0.8rem 0;
+    }
+    
+    nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px;
+        padding: 1rem;
+    }
+    
+    .story {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1.2rem;
+    }
+    
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 0.5rem;
+    }
+    
+    nav a {
+        margin: 3px 0;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+/* Evitar que los textos sean muy pequeños en móviles */
+body {
+    font-size: clamp(16px, 2vw, 18px);
+}
+
+/* Mejorar el área de clic en móviles */
+nav a {
+    padding: 8px 12px;
+    display: inline-block;
+}
+
+/* Optimizar imágenes para móviles */
+.gallery img {
+    max-width: 100%;
+    height: 200px; /* Altura fija para consistencia */
+}
+
+@media (max-width: 480px) {
+    .gallery img {
+        height: 150px;
+    }
+}
+/* Menú Hamburguesa - Mobile */
+@media (max-width: 480px) {
+    nav {
+        position: relative;
+        padding: 0;
+    }
+    
+    .menu-button {
+        background: var(--color-primario);
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    nav a {
+        display: none;
+        padding: 12px;
+        margin: 0;
+        background: var(--color-secundario);
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    nav.responsive a {
+        display: block;
+    }
+    
+    nav a:hover {
+        background: rgba(255,255,255,0.2);
+    }
+}
+/* Estilos para el menú hamburguesa activo */
+nav.responsive {
+    flex-direction: column;
+}
+
+nav.responsive a {
+    display: block !important;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejorar accesibilidad del botón menú */
+.menu-button:focus {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 2px;
 }
